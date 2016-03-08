@@ -1,10 +1,18 @@
 var mongoose = require('mongoose')
   , Schema = new mongoose.Schema({  
-  name: {
-    first: String,
-    last: String
-  }
-})
+      name: {
+        first: String,
+        last: String
+      },
+      dateOfBirth: String,
+      companyName: String,
+      phone: {
+        mobile: String,
+        work: String
+      },
+      skype: String
+    }) 
+  , klass = require('../klass.js')
   ;
 
 mongoose.connect('mongodb://localhost:27017');
@@ -33,11 +41,13 @@ exports.findCustomer = function(req, res) {
 };
 
 exports.addCustomer = function(req, res) {
-  var customer = req.body;
-  
-  Customer.create(customer, function (err, data) {
+  var customer = req.body
+    , customerObject = klass(customer.first, customer.last, customer.date, customer.company, customer.mobile, customer.work, customer.skype)
+    ;
+
+  Customer.create(customerObject, function (err, data) {
     if (err) console.log(err);
-    
+
     res.send(data);
   })
 };

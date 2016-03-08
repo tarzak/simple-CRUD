@@ -1,9 +1,8 @@
 var express = require('express')
   , bodyParser = require('body-parser')
   , customers = require('./routes/customers')
+  , app = express()
   ;
-
-var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
