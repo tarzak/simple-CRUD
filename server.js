@@ -1,4 +1,5 @@
 var express = require('express')
+	, path = require('path')
   , bodyParser = require('body-parser')
   , customers = require('./routes/customers')
   , app = express()
@@ -6,6 +7,7 @@ var express = require('express')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'app')));
 
 app.get('/customers', customers.findAllCustomers);
 app.get('/customers/:id', customers.findCustomer);

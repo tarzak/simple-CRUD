@@ -1,0 +1,11 @@
+{
+  "name": "person-crud",
+  "version": "0.0.2",
+  "main": "index.html",
+  "dependencies": {
+    "jquery": "2.*",
+    "bootstrap": "3.*",
+    "underscore": "1.*",
+    "backbone": "1.*"
+  }
+}

@@ -1,11 +1,14 @@
 {
-    "name": "person-crud",
-    "description": "Simple CRUD for Person-Customer example",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-        "express": "4.x",
-        "body-parser": "1.x",
-        "mongoose": "4.x"
-    }
+  "name": "Person-crud",
+  "description": "Simple CRUD for Person-Customer example",
+  "version": "0.0.2",
+  "private": true,
+  "dependencies": {
+    "express": "4.x",
+    "body-parser": "1.x",
+    "mongoose": "4.x"
+  },
+  "scripts": {
+	  "preinstall": "npm i -g bower"
+	}
 }
