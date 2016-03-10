@@ -13,13 +13,13 @@
         <h3>Customers list</h3>
         <table>
             <thead>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Date of birth</th>
+                <th>Company</th>
+                <th>Mobile Phone</th>
+                <th>Work Phone</th>
+                <th>Skype</th>
             </thead>
             <tbody class="customersList"></tbody>
         </table>
@@ -35,7 +35,21 @@
         <td class="last">
             <%- name.last %>
         </td>
-
+        <td class="date">
+            <%- dateOfBirth %>
+        </td>
+        <td class="company">
+            <%- companyName %>
+        </td>
+        <td class="mobile">
+            <%- phone.mobile %>
+        </td>
+        <td class="work">
+            <%- phone.work %>
+        </td>
+        <td class="skype">
+            <%- skype %>
+        </td>
     </script>
 
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
