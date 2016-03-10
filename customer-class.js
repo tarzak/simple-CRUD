@@ -1,26 +1,32 @@
-module.exports = function (first, last, date, company, mobile, work, skype) {
-  if (!first || !last || !date || !company || !mobile || !work || !skype)
+module.exports = function (object) {
+  // TO-DO: some algorithm for checking objects by template
+  var name = object.name
+    , first = name && name.first
+    , last = name && name.last
+    , phone = object.phone
+    , work = phone && phone.work
+    , mobile = phone && phone.mobile
+    ;
+    
+  if (!first || !last || !object.dateOfBirth || !object.companyName || !work || !mobile || !object.skype)
     throw(Error('Fill all fields'));
 
-  return Customer(first, last, date, company, mobile, work, skype);
+  return Customer(object);
 }
 
-function Person(first, last, date) {
-  this.name = { first: first, last: last};
-  this.dateOfBirth = date;
+function Person(object) {
+  this.name = object.name;
+  this.dateOfBirth = object.dateOfBirth;
 }
 
-function Customer(first, last, date, company, mobile, work, skype) {
+function Customer(object) {
   if (!(this instanceof Customer))
-    return new Customer(first, last, date, company, mobile, work, skype);
+    return new Customer(object);
 
   Person.apply(this, arguments);
-  this.companyName = company,
-  this.phone = {
-    mobile: mobile,
-    work: work
-  }
-  this.skype = skype;
+  this.companyName = object.companyName,
+  this.phone = object.phone,
+  this.skype = object.skype;
 }
 
 Customer.prototype = Person.prototype
