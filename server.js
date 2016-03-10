@@ -13,7 +13,7 @@ app.get('/customers', customers.findAllCustomers);
 app.get('/customers/:id', customers.findCustomer);
 app.post('/addCustomer', customers.addCustomer);
 app.put('/updateCustomer/:id', customers.updateCustomer);
-app.delete('/removeCustomer/:id', customers.removeCustomer);
+app.delete('/customers/:id', customers.removeCustomer);
   
 app.listen(3000);
 console.log('Listening on port 3000...');

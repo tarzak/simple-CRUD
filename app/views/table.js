@@ -2,8 +2,7 @@ var CustomerView = Backbone.View.extend({
     tagName: 'tr',
 
     events: {
-        'click tr': 'select',
-        'click .remove': 'remove'
+        'click .glyphicon-trash': 'removeCustomer'
     },
 
     initialize: function () {
@@ -20,14 +19,19 @@ var CustomerView = Backbone.View.extend({
         return this.$el;
     },
 
-    remove: function () {
+    removeCustomer: function () {
         this.model.destroy();
-    }
+    },
+
+/*    remove: function (e) {
+        console.log(this)
+        console.log('remove');
+    }*/
 });
 
 var CustomersView = Backbone.View.extend({
     events: {
-        "click tr": "select2"
+        "click tr": "select"
     },
 
     initialize: function () {
@@ -46,11 +50,15 @@ var CustomersView = Backbone.View.extend({
     },
 
     addCustomer: function (model) {
-        console.log(this);
+        console.log(model);
         var view = new CustomerView({model: model});
 
         this.$('.customersList').append(view.render());
 
+    },
+
+    select: function (e) {
+        console.log('select_row')
     }
 });
 

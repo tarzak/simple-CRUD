@@ -5,7 +5,7 @@ var app = app || {};
 
   app.customersView = new CustomersView({
 
-    el: '#mytable'
+    el: '#customersTable'
 
   });
 
