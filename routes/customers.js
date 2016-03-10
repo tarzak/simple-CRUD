@@ -31,7 +31,7 @@ exports.findCustomer = function(req, res) {
 
 exports.addCustomer = function(req, res) {
   var data = req.body
-    , customer = customerClass(data.first, data.last, data.date, data.company, data.mobile, data.work, data.skype)
+    , customer = customerClass(data)
     ;
 
   Customers.create(customer, function (err, data) {
@@ -44,7 +44,7 @@ exports.addCustomer = function(req, res) {
 exports.updateCustomer = function (req, res) {
   var id = req.params.id
     , data = req.body
-    , customer = customerClass(data.first, data.last, data.date, data.company, data.mobile, data.work, data.skype)
+    , customer = customerClass(data)
     ;
 
   Customers.findByIdAndUpdate(id, customer, function (err, data) {
