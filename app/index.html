@@ -6,7 +6,45 @@
 </head>
 <body>
 	<h2>test</h2>
-<script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
-<script type="text/javascript" src="bower_components/backbone/backbone-min.js"></script>
+    <div class="table" id="mytable">
+    </div>
+
+    <script type="text/template" id="viewCustomers">
+        <h3>Customers list</h3>
+        <table>
+            <thead>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody class="customersList"></tbody>
+        </table>
+    </script>
+    
+    <script type="text/template" id="viewCustomer">
+        <td>
+            <%- _id %>
+        </td>
+        <td class="first">
+            <%- name.first %>
+        </td>
+        <td class="last">
+            <%- name.last %>
+        </td>
+
+    </script>
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="bower_components/backbone/backbone-min.js"></script>
+    <script type="text/javascript" src="collections/customers.js"></script>
+    <script type="text/javascript" src="models/customer.js"></script>
+    <script type="text/javascript" src="views/table.js"></script>
+
+    <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
