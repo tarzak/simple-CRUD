@@ -1,5 +1,5 @@
 var express = require('express')
-	, path = require('path')
+  , path = require('path')
   , bodyParser = require('body-parser')
   , customers = require('./routes/customers')
   , app = express()
@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'app')));
 
 app.get('/customers', customers.findAllCustomers);
 app.get('/customers/:id', customers.findCustomer);
-app.post('/addCustomer', customers.addCustomer);
+app.post('/customers', customers.addCustomer);
 app.put('/updateCustomer/:id', customers.updateCustomer);
 app.delete('/customers/:id', customers.removeCustomer);
   

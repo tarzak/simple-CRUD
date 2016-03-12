@@ -1,3 +1,5 @@
 td .glyphicon-trash {
 	cursor: pointer;
 }
+
+.not-implemented { text-decoration: line-through; }

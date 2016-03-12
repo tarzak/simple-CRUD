@@ -12,9 +12,7 @@ Customers = mongoose.model('Customer');
 
 exports.findAllCustomers = function(req, res) {
   Customers.find(function (err, data) {
-    if (err) console.log(err);
-    
-    res.send(data);
+    response(err, data, res, req);
   })
 };
 
@@ -23,9 +21,7 @@ exports.findCustomer = function(req, res) {
     ;
 
   Customers.findById(id, function (err, data) {
-    if (err) console.log(err);
-
-    res.send(data);
+    response(err, data, res, req);
   });
 };
 
@@ -33,11 +29,9 @@ exports.addCustomer = function(req, res) {
   var data = req.body
     , customer = customerClass(data)
     ;
-
+  
   Customers.create(customer, function (err, data) {
-    if (err) console.log(err);
-
-    res.send(data);
+    response(err, data, res, req);
   })
 };
 
@@ -48,9 +42,7 @@ exports.updateCustomer = function (req, res) {
     ;
 
   Customers.findByIdAndUpdate(id, customer, function (err, data) {
-    if (err) console.log(err);
-
-    res.send(data);
+    response(err, data, res, req);
   })
 }
 
@@ -59,8 +51,19 @@ exports.removeCustomer = function (req, res) {
     ;
 
   Customers.findByIdAndRemove(id, function (err, data) {
-    if (err) console.log(err);
-
-    res.send(data);
+    response(err, data, res, req);
   })
+}
+
+
+function response (err, data, res, req) {
+  if (err) {
+    res.statusCode = 500;
+    res.send({
+      err: err.code
+    });
+    console.log(err);
+  } else {
+    res.send(data);
+  }
 }

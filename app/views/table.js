@@ -1,64 +1,66 @@
 var CustomerView = Backbone.View.extend({
-    tagName: 'tr',
+  tagName: 'tr',
 
-    events: {
-        'click .glyphicon-trash': 'removeCustomer'
-    },
+  events: {
+    "click span.glyphicon-trash": "removeCustomer",
+    // "click td": "selectCustomer"
+  },
 
-    initialize: function () {
-        console.log(this);
-        this.template = _.template($('#viewCustomer').html());
-        this.listenTo(this.model, 'change', this.render);
-        this.listenTo(this.model, 'destroy', this.remove);
-    },
+  initialize: function () {
+    this.template = _.template($('#viewCustomer').html());
+    this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.model, 'destroy', this.remove);
+  },
 
-    render: function () {
-        var view = this.template(this.model.toJSON());
-        this.$el.html(view);
+  render: function () {
+    var localeDate = new Date(this.model.toJSON().dateOfBirth).toLocaleDateString()
+      , formattedObject = this.model.toJSON()
+      ;
+    
+    formattedObject.dateOfBirth = localeDate;
+    
+    view = this.template(formattedObject);
+    
+    this.$el.html(view);
 
-        return this.$el;
-    },
+    return this.$el;
+  },
 
-    removeCustomer: function () {
-        this.model.destroy();
-    },
-
-/*    remove: function (e) {
-        console.log(this)
-        console.log('remove');
-    }*/
+  removeCustomer: function () {
+    this.model.destroy();
+    return false;
+  }
+// should be implemented later
+/*  selectCustomer: function () {
+    var json = this.model.toJSON()
+      , model = this.model
+      ;
+    
+    app.editCustomerView.model.set(json);
+  }*/
 });
 
 var CustomersView = Backbone.View.extend({
-    events: {
-        "click tr": "select"
-    },
+  events: {
+    "click button": "create"
+  },
 
-    initialize: function () {
-        this.template = _.template($('#viewCustomers').html());
-        this.$el.html(this.template());
-        this.coll = new CustomersCollection();
-        this.coll.fetch();
-        this.listenTo(this.coll, "all", this.render());
-        this.listenTo(this.coll, "add", this.addCustomer);
-    },
+  initialize: function () {
+    this.template = _.template($('#viewCustomers').html());
+    this.$el.html(this.template());
+    this.collection.fetch();
+    this.listenTo(this.collection, "all", this.render());
+    this.listenTo(this.collection, "add", this.addCustomer);
+  },
 
-    render: function () {
-        this.coll.each(function(customer, index) {
-            console.log(customer);
-        })
-    },
+  render: function () {
 
-    addCustomer: function (model) {
-        console.log(model);
-        var view = new CustomerView({model: model});
+  },
 
-        this.$('.customersList').append(view.render());
+  addCustomer: function (model) {
+    var view = new CustomerView({model: model})
+      ;
 
-    },
-
-    select: function (e) {
-        console.log('select_row')
-    }
+    this.$('.customersList').append(view.render());
+  }
 });
-
