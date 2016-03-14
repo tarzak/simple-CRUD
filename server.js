@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'app')));
 app.get('/customers', customers.findAllCustomers);
 app.get('/customers/:id', customers.findCustomer);
 app.post('/customers', customers.addCustomer);
-app.put('/updateCustomer/:id', customers.updateCustomer);
+app.put('/customers/:id', customers.updateCustomer);
 app.delete('/customers/:id', customers.removeCustomer);
   
 app.listen(3000);
